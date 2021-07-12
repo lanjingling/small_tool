@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Small Tool</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body style="width:600px;">
+<nav class="navbar navbar-default" id="navbarHeader">
+        <a href="popup.html" class="navbar-back" > <span class="goback"></span> 返回工具列表</a>
+        <a class="navbar-brand pull-right" href="#">进制转换</a>
+</nav>
+<div class="tool-body" id="toolBody">
+    <div class="form-group">
+        <input type="text" id="val_n" class="form-control" placeholder="输入数值" style="width:40%;height:30px;display: inline-block;"/>
+        &nbsp;
+        <select class="form-control" style="height:30px;display: inline-block;padding:0px;width:90px" id="sel_opt">
+            <option value="2" selected>二进制</option>
+            <option value="8">八进制</option>
+            <option value="10">十进制</option>
+            <option value=16>十六进制</option>
+        </select>
+        &nbsp;
+        <input type="button" id="zh_btn" value="转换" class="btn btn-sm btn-info"  />
+        &nbsp;
+        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger" />
+    </div>
+    <hr>
+    <div class="form-group">
+        二进制：<input type="text" id="res_2" class="form-control" style="width:85%;height:30px; display: inline-block;" readonly/><br/><br/>
+        八进制：<input type="text" id="res_8" class="form-control" style="width:85%;height:30px; display: inline-block;" readonly/><br/><br/>
+        十进制：<input type="text" id="res_10" class="form-control" style="width:85%;height:30px; display: inline-block;" readonly/><br/><br/>
+        十六进制：<input type="text" id="res_16" class="form-control" style="width:85%;height:30px; display: inline-block;" readonly/>
+    </div>
+</div>
+<div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
+    <a href="homeUrl" target="_blank">©{{copyright}} 常用工具(ToolBox) V{{version}}</a>
+</div>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/binary.js"></script>
+
+</body>
+</html>

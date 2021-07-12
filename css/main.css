@@ -1,0 +1,81 @@
+body{font-family: 'Microsoft Yahei';}
+
+::-webkit-scrollbar{/*滚动条宽度设置：宽度为0 ，当有滚动条出现的时候则不显示滚动条*/
+    padding-left:1px;
+    background-color:#fafafa;
+    overflow:visible;
+    width:5px;
+}
+::-webkit-scrollbar-thumb{/*滚动条滑块颜色设置*/
+    background-color:rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    background-clip:padding-box;
+    border-left-width:1px;
+    min-height:10px;
+    box-shadow:inset 1px 1px 0 rgba(0, 0, 0, .1),inset 0 -1px 0 rgba(0, 0, 0, .07);
+}
+
+::-webkit-scrollbar-thumb:vertical:hover{/*滚动条滑块鼠标移上去颜色设置*/
+    background-color:rgba(0, 0, 0, .2);
+}
+::-webkit-scrollbar-thumb:vertical:active{/*滚动条鼠标点击颜色设置*/
+    background-color:rgba(0, 0, 0, .2);
+}
+::-webkit-scrollbar-button{
+    height:0;
+    width:0;
+}
+::-webkit-scrollbar-track{/*滚动条槽背景设置*/
+    background-clip:padding-box;
+    border:solid transparent;
+    border-width:0 0 0 1px;
+    background-color:#fff;
+}
+::-webkit-scrollbar-corner{
+    background:transparent;
+}
+::-webkit-scrollbar-track-piece{
+    margin: 0;
+    -webkit-border-radius: 0;
+    -webkit-border-bottom-right-radius: 1px;
+    -webkit-border-bottom-left-radius: 1px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+    
+
+.navbar {margin-bottom: 10px; min-height: unset;}
+.form-group {margin-bottom:10px;}
+.navbar-brand {font-size:16px; padding:10px; height:unset;}
+.navbar-back {font-size: 14px; padding-left: 10px; line-height:40px; padding-left: 22px; color:#777;}
+.goback{position: absolute;top: 12px; left: 0px;border: 8px solid transparent;border-right: 8px solid #777; background-color: #f8f8f8;}
+.goback:hover{border-right: 8px solid #808080;}
+.goback:after{content: '';position: absolute;top: -8px; left: -6px;border: 8px solid transparent;border-right: 8px solid #f8f8f8;}
+
+.tool-list .panel-body {padding:10px;}
+.tool-list .panel{margin: 4px; float:left; width:340px; height:68px; background-color: #fff;
+    border: 1px solid transparent;
+    border-color: #ddd;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+}
+.tool-list a:hover{background-color: #efefef;}
+.tool-image {float:left; }
+.tool-content {float:left; margin-left:10px; width:260px;}
+.tool-title{color: #337ab7;font-size: 18px; padding-bottom: 5px;}
+.tool-desc{color: #777;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tool-body {padding:10px}
+
+
+
+

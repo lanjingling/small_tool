@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Small Tool</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body style="width:600px;"> 
+<nav class="navbar navbar-default" id="navbarHeader">
+        <a href="popup.html" class="navbar-back" > <span class="goback"></span> 返回工具列表</a>
+        <a class="navbar-brand pull-right" href="#">时间戳转换</a>
+</nav>
+<div class="tool-body" id="toolBody">
+    <div class="form-group">
+        <a href="#" id="sh_refresh" title="刷新"><span class="glyphicon glyphicon-refresh"></span></a>
+        当前时间戳：<lable id="current_value"/>  
+    </div>
+    <hr>
+    <div class="form-group">
+        时间戳->时间：<input type="text" id="sjc" class="form-control" placeholder="10或13位时间戳" style="width:35%;height:30px;display: inline-block;"/>
+        <input type="button" id="sjc_btn" value="->" class="btn btn-sm btn-info"  />
+        <input type="text" disabled class="form-control" id="sjc_value" style="width:35%;height:30px;display: inline-block;"/>
+        <br/><br/>
+        时间->时间戳：<input type="text" id="sj" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss" style="width:35%;height:30px;display: inline-block;"/>
+        <input type="button" id="sj_btn" value="->" class="btn btn-sm btn-info"  />
+        <input type="text" disabled class="form-control" id="sj_value" style="width:35%;height:30px; display: inline-block;"/>
+
+        <br/><br/>
+        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger" style="display:block;margin:0 auto"/>
+    </div>
+</div>
+<div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
+    <a v-bind:href="homeUrl" target="_blank">©{{copyright}} 常用工具(ToolBox) V{{version}}</a>
+</div>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/time.js"></script>
+
+</body>
+</html>

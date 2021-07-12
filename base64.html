@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Small Tool</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+<body style="width:600px;">
+<nav class="navbar navbar-default" id="navbarHeader">
+        <a href="popup.html" class="navbar-back" > <span class="goback"></span> 返回工具列表</a>
+        <a class="navbar-brand pull-right" href="#">编解码工具</a>
+</nav>
+<div class="tool-body" id="toolBody">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#base64_tab" data-toggle="tab">
+                Base64加解密
+           </a>
+        </li>
+        <li>
+            <a href="#url_tab" data-toggle="tab">
+                URL的编解码
+           </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="base64_tab" style="padding:5px">
+            <div class="form-group">
+                <input type="text" class="form-control" style="height:60px; line-height:45px;" id="base_val"/>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Base64加密" class="btn btn-sm btn-info" id="base_encode_btn"/>
+                &nbsp; &nbsp;
+                <a href="#" id="base64_change" title="上下交换">
+                    <span class="glyphicon glyphicon-sort"></span>
+                 </a>
+                &nbsp; &nbsp;
+                <input type="button" value="Base64解密" class="btn btn-sm btn-info" id="base_decode_btn"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right"/>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" style="height:60px; line-height:15px;" wrap="off" style="overflow:scroll;" id="base_res" readonly ></textarea>
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="url_tab" style="padding:5px">
+            <div class="form-group">
+                <input type="text" class="form-control" style="height:60px; line-height:45px;" placeholder="使用encodeURIComponent()编码" id="url_val"/>
+            </div>
+            <div class="form-group">
+                <input type="button" value="URLEncode编码" class="btn btn-sm btn-info" id="url_encode_btn"/>
+                &nbsp; &nbsp;
+                <a href="#" id="url_change" title="上下交换">
+                    <span class="glyphicon glyphicon-sort"></span>
+                 </a>
+                &nbsp; &nbsp;
+                <input type="button" value="URLDecode解码" class="btn btn-sm btn-info" id="url_decode_btn"/>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="url_clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right"/>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" style="height:60px; line-height:15px;" wrap="off" style="overflow:scroll;" id="url_res" readonly ></textarea>
+            </div>
+            <b>说明：</b>RFC 1738做了硬性规定：“只有字母和数字[0-9a-zA-Z]、一些特殊符号"$-_.+!*'(),"[不包括双引号]、以及某些保留字，才可以不经过编码直接用于URL”。Javascript用于编码的函数，共有三个：
+            <ul>
+                <li>escape():最古老的一个，已不提倡使用</li>
+                <li>encodeURI()：对"; / ? : @ & = + $ , #"这个特殊富豪不进行编码，编码后以utf-8形式输出，且在每个字节前加上%</li>
+                <li>encodeURIComponent()：用于对URL的组成部分进行个别编码，而不用于对整个URL进行编码，且对以上符号也会编码</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
+    <a v-bind:href="homeUrl" target="_blank">©{{copyright}} 常用工具(ToolBox) V{{version}}</a>
+</div>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/base64.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/base64.js"></script>
+
+</body>
+</html>
