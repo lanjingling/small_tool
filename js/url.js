@@ -42,7 +42,22 @@ function parseQueryString(url) {
         const pairs = str.split("&");
         for(let i = 0; i < pairs.length; i ++) {
             const pair = pairs[i].split("=");
-            query[pair[0]] = pair[1];
+            const k = pair[0];
+            const v = pair[1];
+            if(query[k]){//string or array
+                if(Array.isArray(query[k])) {
+                    var arr = query[k];
+                    arr[arr.length] = v;
+                    query[k] = arr;
+                } else {
+                    var arr=new Array(2)
+                    arr[0]=query[k];
+                    arr[1]=v;
+                    query[k] = arr;
+                }
+            } else {
+                query[k] = v;
+            }
         }
     }
     return query ;  // 返回对象
