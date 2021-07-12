@@ -16,7 +16,13 @@ $(document).ready(function(){
     $("#kv_btn").click(function(){
         var val = $("#url_val").val();
         if (val) {
-
+            var res_obj = parseQueryString(val);
+            var res_arr = [];
+            for (var val in res_obj) {
+                res_arr.push(val+"="+res_obj[val])
+            }
+            var res = res_arr.join("\n");
+            $("#url_res").val(res);
         }    
     });
     
