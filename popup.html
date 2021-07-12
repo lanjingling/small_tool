@@ -9,18 +9,11 @@
     <link href="css/jquery-ui.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="tool-list" id="toolList" style="height:560px;overflow:auto;background: #f8f8f8;">
-        <a class="panel " href="time.html" title="时间戳与指定格式的时间相互转换"><!--ui-state-default-->
-            <div class="panel-body">
-                <div class="tool-image">
-                    <img src="img/time.png">
-                </div>
-                <div class="tool-content">
-                    <div class="tool-title">时间戳转换</div>
-                    <div class="tool-desc">时间戳与指定格式的时间相互转换</div>
-                </div>
-            </div>
-        </a>
+    <div class="text-muted small" style="line-height:20px;background:#dddada;color:#000;text-align: center;" id="navbarFooter">
+        <img src="img/icon_16.png">&nbsp;码农小工具箱
+    </div>
+	<div class="tool-list" id="toolList" style="height:550px;overflow:auto;background: #f8f8f8;">
+        
 
         <a class="panel" href="json.html" title="JSON格式化、压缩、转义、去转义">
             <div class="panel-body">
@@ -33,6 +26,29 @@
                 </div>
             </div>
         </a>
+
+        <a class="panel " href="time.html" style="width:165px" title="时间戳格式化"><!--ui-state-default-->
+            <div class="panel-body">
+                <div class="tool-image">
+                    <img src="img/time.png">
+                </div>
+                <div class="tool-content" style="width:90px" >
+                    <div class="tool-title">时间戳转换</div>
+                    <div class="tool-desc">时间戳格式化</div>
+                </div>
+            </div>
+        </a>
+        <a class="panel " href="crontab.html" style="width:165px" title="存储、时间等计算器">
+            <div class="panel-body">
+                <div class="tool-image">
+                    <img src="img/jisuanqi.png">
+                </div>
+                <div class="tool-content" style="width:95px">
+                    <div class="tool-title">特殊计算器</div>
+                    <div class="tool-desc">存储、时间等计算器</div>
+                </div>
+            </div>
+        </a> 
 
         <a class="panel " href="base64.html" title="包括：Base64的加解密、URL的编解码">
             <div class="panel-body">
@@ -94,21 +110,22 @@
             </div>
         </a>
 
-        <!-- <a class="panel " href="crontab.html" title="CRON表达式解析，包括：linux、spring、quartz">
+        <a class="panel " href="crontab.html" title="子网掩码计算">
             <div class="panel-body">
                 <div class="tool-image">
-                    <img src="img/jisuanqi.png">
+                    <img src="img/ip.png">
                 </div>
                 <div class="tool-content">
-                    <div class="tool-title">特殊计算器</div>
-                    <div class="tool-desc">CRON表达式解析，包括：linux、spring、quartz</div>
+                    <div class="tool-title">子网掩码</div>
+                    <div class="tool-desc">子网掩码计算</div>
                 </div>
             </div>
-        </a> -->
+        </a>
+        
         
     </div>
 
-	<div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #dddada; text-align:right;" id="navbarFooter">
+	<div class="text-muted small" style="padding-right: 15px; line-height: 20px;background: #dddada; text-align:right;" id="navbarFooter">
         <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>
     </div>
 

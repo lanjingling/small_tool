@@ -69,8 +69,15 @@ hr {
 .tool-list a:hover{background-color: #efefef;}
 .tool-image {float:left; }
 .tool-content {float:left; margin-left:10px; width:260px;}
-.tool-title{color: #337ab7;font-size: 18px; padding-bottom: 5px;}
+.tool-title{color: #337ab7;
+    font-size: 15px; 
+    padding-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .tool-desc{color: #777;
+    font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

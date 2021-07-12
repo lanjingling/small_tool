@@ -6,37 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Small Tool</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+    <!-- <link href="css/main.css" rel="stylesheet"> -->
+    <link href="css/diffview.css" rel="stylesheet">
+    <style type="text/css">
+       hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        }
+        .textInput {
+            display: block;
+            width: 50%;
+            padding:10px;
+            float: left;
+        }
+        
+        label:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+       
+        .viewType {
+            text-align: right;
+        }
+        #diffoutput {
+            width: 100%;
+        }
+        </style>
 </head>
-<body style="width:600px;"> 
-<nav class="navbar navbar-default" id="navbarHeader">
-        <a href="popup.html" class="navbar-back" > <span class="goback"></span> 返回工具列表</a>
-        <a class="navbar-brand pull-right" href="#">时间戳转换</a>
-</nav>
-<div class="tool-body" id="toolBody">
-    <div class="form-group">
-        <a href="#" id="sh_refresh" title="刷新"><span class="glyphicon glyphicon-refresh"></span></a>
-        当前时间戳：<lable id="current_value"/>  
-    </div>
-    <hr>
-    <div class="form-group">
-        时间戳->时间：<input type="text" id="sjc" class="form-control" placeholder="10或13位时间戳" style="width:35%;height:30px;display: inline-block;"/>
-        <input type="button" id="sjc_btn" value="->" class="btn btn-sm btn-info"  />
-        <input type="text" disabled class="form-control" id="sjc_value" style="width:35%;height:30px;display: inline-block;"/>
-        <br/><br/>
-        时间->时间戳：<input type="text" id="sj" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss" style="width:35%;height:30px;display: inline-block;"/>
-        <input type="button" id="sj_btn" value="->" class="btn btn-sm btn-info"  />
-        <input type="text" disabled class="form-control" id="sj_value" style="width:35%;height:30px; display: inline-block;"/>
-
-        <br/><br/>
-        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger" style="display:block;margin:0 auto"/>
-    </div>
+<body> 
+<div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
+    <img src="img/icon_16.png">&nbsp;码农小工具箱
 </div>
+
+<div class="tool-body" id="toolBody">
+	
+	<div class="textInput" >
+		<textarea id="baseText" class="form-control" cols="20" rows="15" placeholder="文本一"></textarea>
+	</div>
+	<div class="textInput" >
+		<textarea id="newText" class="form-control" cols="20" rows="15" placeholder="文本二"></textarea>
+	</div>
+	<div class="viewType">
+        <strong>Context size (optional):</strong> <input type="text" class="form-control" id="contextSize" value="" style="width:10%;height:28px;display:inline-block">
+        &nbsp; &nbsp;
+		<input type="radio" name="_viewtype" id="sidebyside" > <label for="sidebyside">Side by Side Diff</label>
+		&nbsp; &nbsp;
+		<input type="radio" name="_viewtype" id="inline" > <label for="inline">Inline Diff</label>
+        &nbsp; &nbsp;
+	</div>
+
+    <hr>
+	<div id="diffoutput"> </div>
+</div>
+
 <div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>
 </div>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="js/time.js"></script>
+<script type="text/javascript" src="js/lib/diffview.js"></script>
+<script type="text/javascript" src="js/lib/difflib.js"></script>
+<script type="text/javascript" src="js/diff.js"></script>
 
 </body>
 </html>
