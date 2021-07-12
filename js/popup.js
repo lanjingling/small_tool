@@ -1,13 +1,17 @@
 $(function() {
 
-	// 加载设置
-	var defaultConfig = {color: 'white'}; // 默认配置
-	chrome.storage.sync.get(defaultConfig, function(items) {
-		document.body.style.backgroundColor = items.color;
+	$( "#toolList" ).sortable({
+		revert: true
 	});
 
+	// 加载设置
+	// var defaultConfig = {color: 'white'}; // 默认配置
+	// chrome.storage.sync.get(defaultConfig, function(items) {
+	// 	document.body.style.backgroundColor = items.color;
+	// });
+
 	// 初始化国际化
-	$('#test_i18n').html(chrome.i18n.getMessage("helloWorld"));
+	// $('#test_i18n').html(chrome.i18n.getMessage("helloWorld"));
 
 
 });
