@@ -12,6 +12,10 @@ $(document).ready(function(){
     $("#sj_value").val(outputSj);
 
 
+    $("#goback").click(function(){
+        gobackPopup();
+    });
+    
     $("#sh_refresh").click(function(){
         var str = getCurrentTimeStr();
         $("#current_value").html(str).css("color","red");
@@ -53,6 +57,8 @@ $(document).ready(function(){
         setLocalStorage('time.output.sj', "");
         setLocalStorage('time.output.sjc', "");
     });
+
+    setLocalStorage('page.current', "time");
 });
 
 
@@ -76,11 +82,3 @@ function timeFormatStr(shijianchuo){
     return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
 }
 
-function getLocalStorage(key){
-    var storage=window.localStorage;
-    return storage[key];
-}
-function setLocalStorage(key,val){
-    var storage=window.localStorage;
-    storage[key] = val;
-}

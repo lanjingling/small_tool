@@ -10,6 +10,9 @@ $(document).ready(function(){
     $("#url_val").val(inputval2);
     $("#url_res").val(outputval2);
 
+    $("#goback").click(function(){
+        gobackPopup();
+    });
 
     $("#base_encode_btn").click(function(){
         var val = $("#base_val").val();
@@ -73,34 +76,9 @@ $(document).ready(function(){
         setLocalStorage('url.input.val', "");
         setLocalStorage('url.output.val', "");
     });
+
+    setLocalStorage('page.current', "base64");
 });
 
 
 
-function getCurrentTimeStr(){
-    var t1 = Date.parse(new Date())/1000;
-    var t2 = new Date().getTime();
-
-    return "10位：" + t1 + " ; 13位（毫秒）:" + t2;
-}
-
-function add0(m){return m<10?'0'+m:m }
-function timeFormatStr(shijianchuo){
-    var time = new Date(shijianchuo);
-    var y = time.getFullYear();
-    var m = time.getMonth()+1;
-    var d = time.getDate();
-    var h = time.getHours();
-    var mm = time.getMinutes();
-    var s = time.getSeconds();
-    return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
-}
-
-function getLocalStorage(key){
-    var storage=window.localStorage;
-    return storage[key];
-}
-function setLocalStorage(key,val){
-    var storage=window.localStorage;
-    storage[key] = val;
-}

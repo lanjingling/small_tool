@@ -18,6 +18,8 @@ $(document).ready(function(){
     let val2 = getLocalStorage('diff.text.input2');
     $("#baseText").val(val1);
     $("#newText").val(val2);
+
+    setLocalStorage('page.current', "popup");
 });
 
 

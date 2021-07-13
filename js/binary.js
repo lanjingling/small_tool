@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $("#goback").click(function(){
+        gobackPopup();
+    });
+
     $("#zh_btn").click(function(){
         var data = $("#val_n").val();
         var sel = $("#sel_opt").val();
@@ -37,6 +41,8 @@ $(document).ready(function(){
     }
 
     $('#zh_btn').trigger('click');	
+
+    setLocalStorage('page.current', "binary");
 });
 
 
@@ -60,11 +66,4 @@ function timeFormatStr(shijianchuo){
     return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
 }
 
-function getLocalStorage(key){
-    var storage=window.localStorage;
-    return storage[key];
-}
-function setLocalStorage(key,val){
-    var storage=window.localStorage;
-    storage[key] = val;
-}
+

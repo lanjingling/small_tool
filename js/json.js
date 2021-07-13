@@ -3,6 +3,10 @@ $(document).ready(function(){
     var inputSjc = getLocalStorage('json.input.jv');
     $("#json_value").val(inputSjc);
 
+    $("#goback").click(function(){
+        gobackPopup();
+    });
+
     $("#format_btn").click(function(){
         
         var json_val = $("#json_value").val();
@@ -51,12 +55,6 @@ $(document).ready(function(){
 
         setLocalStorage('json.input.jv', "");
     });
+
+    setLocalStorage('page.current', "json");
 });
-function getLocalStorage(key){
-    var storage=window.localStorage;
-    return storage[key];
-}
-function setLocalStorage(key,val){
-    var storage=window.localStorage;
-    storage[key] = val;
-}

@@ -10,7 +10,7 @@
 </head>
 <body style="width:600px;">
 <nav class="navbar navbar-default" id="navbarHeader">
-        <a href="popup.html" class="navbar-back" > <span class="goback"></span> 返回工具列表</a>
+        <a href="popup.html" class="navbar-back" id="goback"> <span class="goback"></span> 返回工具列表</a>
         <a class="navbar-brand pull-right" href="#">URL参数解析</a>
 </nav>
 <div class="tool-body" id="toolBody">
@@ -20,12 +20,13 @@
         </div>
         <div class="form-group">
             <input type="button" value="json格式" class="btn btn-sm btn-info" id="json_btn"/>&nbsp;
-            <input type="button" value="kv对格式" class="btn btn-sm btn-info" id="kv_btn"/>
+            <input type="button" value="kv对格式" class="btn btn-sm btn-info" id="kv_btn"/>&nbsp;
+            <input type="button" value="修改URL" class="btn btn-sm btn-info" id="md_btn"/>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right"/>
         </div>
-        <div class="form-group">
-            <textarea class="form-control" rows=13 wrap="off" style="overflow:scroll;" id="url_res" readonly ></textarea>
+        <div class="form-group" style="margin-bottom:1px;">
+            <textarea class="form-control" rows=14 wrap="off" style="overflow:scroll;" id="url_res"></textarea>
         </div>
     </div>
 </div>
@@ -33,6 +34,7 @@
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>
 </div>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/url.js"></script>
 
 </body>
