@@ -10,3 +10,6 @@ It is a chrome extension that provides developers with common tools.
 - CRON表达式工具：包含CRON表达的解析、生成
 - Base64加解密、URLEncoding/URLDecoding编解码
 - URL参数解析工具：将URL后面的参数转成json、k-v格式数据
+
+## Demo
+![image](https://github.com/lanjingling/small_tool/blob/master/demo.jpg)
