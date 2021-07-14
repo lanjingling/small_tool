@@ -10,6 +10,7 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <style type="text/css">
+    
     #json-display {
         border: 1px solid #000;
 
@@ -26,20 +27,17 @@
         <a class="navbar-brand pull-right" href="#">JSON格式化</a>
 </nav>
 <div class="tool-body" id="toolBody">
-    
     <div class="form-group">
-        <input type="button" id="format_btn" value="格式化" class="btn btn-sm btn-info" />&nbsp;
-        <input type="button" id="compress_btn" value="压缩" class="btn btn-sm btn-info" />&nbsp;
-        <input type="button" id="escap_btn" value="转义" class="btn btn-sm btn-info" />&nbsp;
-        <input type="button" id="unescap_btn" value="去转义" class="btn btn-sm btn-info" /> &nbsp;
-        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right" />&nbsp;
+        <pre id="json-display" contenteditable="true"></pre>
     </div>
     <hr>
     <div class="form-group">
-        <!--<textarea class="form-control" rows="19" wrap="off" style="overflow:scroll;" id="json_value"></textarea>-->
-        <pre id="json-display" contenteditable="true"></pre>
+        <input type="button" id="format_btn" value="格式化" class="btn btn-sm btn-info" />
+        <input type="button" id="compress_btn" value="压缩" class="btn btn-sm btn-info" />
+        <input type="button" id="escap_btn" value="转义" class="btn btn-sm btn-info" />
+        <input type="button" id="unescap_btn" value="去转义" class="btn btn-sm btn-info" />
+        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger" />
     </div>
-    
 </div>
 <div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>

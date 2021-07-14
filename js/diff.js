@@ -41,8 +41,8 @@ function diffUsingJS(viewType) {
 		baseTextLines: base,
 		newTextLines: newtxt,
 		opcodes: opcodes,
-		baseTextName: "Base Text",
-		newTextName: "New Text",
+		baseTextName: "文本一",
+		newTextName: "文本二",
 		contextSize: contextSize,
 		viewType: viewType
 	}));
