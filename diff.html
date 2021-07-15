@@ -8,6 +8,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="css/main.css" rel="stylesheet"> -->
     <link href="css/diffview.css" rel="stylesheet">
+    <link href="css/codemirror.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/html.css" rel="stylesheet">
+    <link href="css/annotated.css" rel="stylesheet">
     <style type="text/css">
        hr {
             border: 0;
@@ -39,37 +43,73 @@
         </style>
 </head>
 <body> 
-<div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
+<div class="text-muted small" style="line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
     <img src="img/icon_16.png">&nbsp;码农小工具箱
 </div>
 
-<div class="tool-body" id="toolBody">
-	
-	<div class="textInput" >
-		<textarea id="baseText" class="form-control" cols="20" rows="15" placeholder="文本一"></textarea>
-	</div>
-	<div class="textInput" >
-		<textarea id="newText" class="form-control" cols="20" rows="15" placeholder="文本二"></textarea>
-	</div>
-	<div class="viewType">
-        <strong>Context size (optional):</strong> <input type="text" class="form-control" id="contextSize" value="" style="width:10%;height:28px;display:inline-block">
-        &nbsp; &nbsp;
-		<input type="radio" name="_viewtype" id="sidebyside" > <label for="sidebyside">Side by Side Diff</label>
-		&nbsp; &nbsp;
-		<input type="radio" name="_viewtype" id="inline" > <label for="inline">Inline Diff</label>
-        &nbsp; &nbsp;
-	</div>
+<div class="tool-body" id="toolBody" style="padding: 10px 10px 0px 10px;">
+	<ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#text_diff" data-toggle="tab">
+                文本对比
+           </a>
+        </li>
+        <li>
+            <a href="#json_diff" data-toggle="tab">
+                JSON对比
+           </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="text_diff">
+            <div class="textInput" >
+                <textarea id="baseText" class="form-control" cols="20" rows="15" placeholder="文本一"></textarea>
+            </div>
+            <div class="textInput" >
+                <textarea id="newText" class="form-control" cols="20" rows="15" placeholder="文本二"></textarea>
+            </div>
+            <div class="viewType">
+                <strong>Context size (optional):</strong> <input type="text" class="form-control" id="contextSize" value="" style="width:10%;height:28px;display:inline-block">
+                &nbsp; &nbsp;
+                <input type="radio" name="_viewtype" id="sidebyside" > <label for="sidebyside">Side by Side Diff</label>
+                &nbsp; &nbsp;
+                <input type="radio" name="_viewtype" id="inline" > <label for="inline">Inline Diff</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right"/>
+            </div>
+        
+            <hr>
 
-    <hr>
-	<div id="diffoutput"> </div>
+            <div id="diffoutput"> </div>
+        </div>
+        <div class="tab-pane fade" id="json_diff">
+            <div class="textInput" >
+                <textarea id="baseJson" class="form-control" cols="20" rows="15" placeholder="Json 1"></textarea>
+            </div>
+            <div class="textInput" >
+                <textarea id="newJson" class="form-control" cols="20" rows="15" placeholder="Json 2"></textarea>
+            </div>
+            <div class="viewType">
+                <input type="button" id="json_diff_btn" value="visual diff" class="btn btn-sm btn-info" /> 
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" id="clean_btn2" value="清空结果" class="btn btn-sm btn-danger pull-right"/>
+            </div>
+        
+            <hr>
+
+            <div id="visual"></div>  
+        </div>
+    </div>
 </div>
 
 <div class="text-muted small" style="padding-right: 15px;margin-top: 10px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>
 </div>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/lib/diffview.js"></script>
 <script type="text/javascript" src="js/lib/difflib.js"></script>
+<script type="text/javascript" src="js/lib/jsondiffpatch.umd.min.js"></script>
 <script type="text/javascript" src="js/diff.js"></script>
 
 </body>

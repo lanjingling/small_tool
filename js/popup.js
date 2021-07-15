@@ -9,6 +9,8 @@ $(function() {
 		revert: true
 	});
 
+    $('body').hide().fadeIn(800);
+
 	// 加载设置
 	// var defaultConfig = {color: 'white'}; // 默认配置
 	// chrome.storage.sync.get(defaultConfig, function(items) {
