@@ -13,3 +13,7 @@ It is a chrome extension that provides developers with common tools.
 
 ## Demo
 ![image](https://github.com/lanjingling/small_tool/blob/master/demo.jpg)
+
+## Use
+chrome-extension://fmmbocgmijhikfppllmnamafcphnelgn/binary.html
+chrome-extension://fnaagaoikjcfppeigikiaemgamblenlm/json.html
