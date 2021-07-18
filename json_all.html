@@ -15,30 +15,35 @@
 
         margin: 0;
         padding: 8px 15px;
-        min-height: 450px;
+        min-height: 300px;
         background: #1c2833;
         color: #fff;
     }
+    ::-webkit-scrollbar{/*滚动条宽度设置：宽度为0 ，当有滚动条出现的时候则不显示滚动条*/
+        padding-left:1px;
+        background-color:#fafafa;
+        overflow:visible;
+        width:10px;
+        height:8px;
+    }
 </style>
-<body style="width:760px;"><!--最大800 * 600-->
-<nav class="navbar navbar-default" id="navbarHeader">
-        <a href="popup.html" class="navbar-back" id="goback"> <span class="goback"></span> 返回工具列表</a>
-        <a class="navbar-brand pull-right" href="#">JSON格式化</a>
-</nav>
-<div class="tool-body" id="toolBody" style="padding:0px 10px 0px 10px">
+<body>
+<div class="text-muted small navbar navbar-fixed-top" style="line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
+    <img src="img/icon_16.png">&nbsp;码农小工具箱
+</div>
+<div class="tool-body " id="toolBody" style="padding: 40px 20px 0px 20px;">
     <div class="form-group">
-        <input type="button" id="format_btn" value="格式化" class="btn btn-sm btn-info" />&nbsp;
-        <input type="button" id="compress_btn" value="压缩" class="btn btn-sm btn-info" />&nbsp;
-        <input type="button" id="escap_btn" value="转义" class="btn btn-sm btn-info" />&nbsp;
-        <input type="button" id="unescap_btn" value="去转义" class="btn btn-sm btn-info" /> &nbsp;
-        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right" />
+        <input type="button" id="format_btn" value="格式化" class="btn btn-sm btn-info" />&nbsp; &nbsp;
+        <input type="button" id="compress_btn" value="压缩" class="btn btn-sm btn-info" />&nbsp; &nbsp;
+        <input type="button" id="escap_btn" value="转义" class="btn btn-sm btn-info" />&nbsp; &nbsp;
+        <input type="button" id="unescap_btn" value="去转义" class="btn btn-sm btn-info" />&nbsp; &nbsp;
+        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger pull-right" />&nbsp;
     </div>
-    <hr style="margin-top: 10px;margin-bottom: 10px;">
+    <hr>
     <div class="form-group">
-        <!--<textarea class="form-control" rows="19" wrap="off" style="overflow:scroll;" id="json_value"></textarea>-->
         <pre id="json-display" contenteditable="true"></pre>
     </div>
-    
+    <div id="json_all"></div>
 </div>
 <div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>

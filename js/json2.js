@@ -12,6 +12,7 @@ $(document).ready(function(){
         //var json_val = $("#json-display").text();
         var my_json_val = $("#json-display").clone(false);
         my_json_val.find("a.json-placeholder").remove();
+        my_json_val.find("div.error").remove();
         var json_val = my_json_val.text();
         if(json_val){
             try {
@@ -20,7 +21,7 @@ $(document).ready(function(){
 
                 setLocalStorage('json.input.jv', json_val);
             } catch(err) {
-                $("#json-display").html(json_val+"<br><font color='red'>"+err.message+"</font>");
+                $("#json-display").html(json_val+"<div class='error'><font color='red'>"+err.message+"</font></div>");
             }
         }
     });
@@ -29,13 +30,18 @@ $(document).ready(function(){
         //var json_val = $("#json-display").text();
         var my_json_val = $("#json-display").clone(false);
         my_json_val.find("a.json-placeholder").remove();
+        my_json_val.find("div.error").remove();
         var json_val = my_json_val.text();
         if (json_val){
-            var e = yasuo(json_val,1);
-            //var e = json_val.trim().replace(/\ +/g,"").replace(/[\r\n]/g,"");
-            $("#json-display").text(e);//去空格，去换行
-
-            setLocalStorage('json.input.jv', e);
+            try {
+                var e = yasuo(json_val,1);
+                //var e = json_val.trim().replace(/\ +/g,"").replace(/[\r\n]/g,"");
+                $("#json-display").text(e);//去空格，去换行
+    
+                setLocalStorage('json.input.jv', e);
+            } catch(err) {
+                $("#json-display").html(e+"<div class='error'><font color='red'>"+err.message+"</font></div>");
+            }
         }
     });
 
@@ -43,13 +49,18 @@ $(document).ready(function(){
         //var json_val = $("#json-display").text();
         var my_json_val = $("#json-display").clone(false);
         my_json_val.find("a.json-placeholder").remove();
+        my_json_val.find("div.error").remove();
         var json_val = my_json_val.text();
         if(json_val){
-            //var e = json_val.replace(/\\/g, "\\\\").replace(/\"/g, '\\"');
-            var e = yasuo(json_val,2);
-            $("#json-display").text(e);
+            try {
+                //var e = json_val.replace(/\\/g, "\\\\").replace(/\"/g, '\\"');
+                var e = yasuo(json_val,2);
+                $("#json-display").text(e);
 
-            setLocalStorage('json.input.jv', e);
+                setLocalStorage('json.input.jv', e);
+            } catch(err) {
+                $("#json-display").html(e+"<div class='error'><font color='red'>"+err.message+"</font></div>");
+            }
         }
     });
 
@@ -57,13 +68,18 @@ $(document).ready(function(){
         //var json_val = $("#json-display").text();
         var my_json_val = $("#json-display").clone(false);
         my_json_val.find("a.json-placeholder").remove();
+        my_json_val.find("div.error").remove();
         var json_val = my_json_val.text();
         if(json_val){
-            //var e = json_val.replace(/\\\\/g, "\\").replace(/\\\"/g, '"')
-            var e = yasuo(json_val,4);
-            $("#json-display").text(e);
+            try {
+                //var e = json_val.replace(/\\\\/g, "\\").replace(/\\\"/g, '"')
+                var e = yasuo(json_val,4);
+                $("#json-display").text(e);
 
-            setLocalStorage('json.input.jv', e);
+                setLocalStorage('json.input.jv', e);
+            } catch(err) {
+                $("#json-display").html(e+"<div class='error'><font color='red'>"+err.message+"</font></div>");
+            }
         }
     });
 
@@ -74,14 +90,41 @@ $(document).ready(function(){
         setLocalStorage('json.input.jv', "");
     });
 
-    setLocalStorage('page.current', "json");
+    if ($("#json_all").length <= 0) {
+        setLocalStorage('page.current', "json");
+    }
 
      //init
      var inputSjc = getLocalStorage('json.input.jv');
      if(inputSjc) {
-         var jsonObj = JSON.parse(inputSjc);   //把json字符串转为json对象
-         $("#json-display").jsonViewer(jsonObj,{withQuotes: true});
+         try {
+            var jsonObj = JSON.parse(inputSjc);   //把json字符串转为json对象
+            $("#json-display").jsonViewer(jsonObj,{withQuotes: true});
+         } catch(err) {
+            setLocalStorage('json.input.jv', "");
+         }
      }
+
+     //back top
+     var $goTopBottom = $('<div id="goTop" style="border-radius:5px;solid #444;background:#333;color:#fff;text-align:center;padding:10px 13px 7px 13px;position:fixed;bottom:50px;right:5px;cursor:pointer;display:none;font-family:verdana;font-size:15px;">∧</div><div id="goBottom" style="border-radius:5px;solid #444;background:#333;color:#fff;text-align:center;padding:10px 13px 7px 13px;position:fixed;bottom:10px;right:5px;cursor:pointer;display:none;font-family:verdana;font-size:15px;">∨</div>').appendTo('body');
+
+     $(window).scroll(function() {
+        if ($(this).scrollTop() != 0) {
+            $goTopBottom.fadeIn();
+        } else {
+            $goTopBottom.fadeOut();
+        }
+     });
+     $("#goTop").click(function() {
+        $('body, html').animate({
+            scrollTop: 0
+        }, 800);
+     });
+     $("#goBottom").click(function() {
+        $('body, html').animate({
+            scrollTop: document.body.clientHeight
+        }, 800);
+     });
 });
 
 function textInit(e) {

@@ -40,14 +40,20 @@
         #diffoutput table {/**div里面的table居中*/
             margin:0 auto;
         }
+        table.diff {
+            word-wrap:break-word;word-break:break-all;
+        }
+        table.diff th {
+            white-space: nowrap;
+        }
         </style>
 </head>
 <body> 
-<div class="text-muted small" style="line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
+<div class="text-muted small navbar-fixed-top" style="line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
     <img src="img/icon_16.png">&nbsp;码农小工具箱
 </div>
 
-<div class="tool-body" id="toolBody" style="padding: 10px 10px 0px 10px;">
+<div class="tool-body" id="toolBody" style="padding: 40px 20px 0px 20px;">
 	<ul id="myTab" class="nav nav-tabs">
         <li class="active">
             <a href="#text_diff" data-toggle="tab">
@@ -102,7 +108,7 @@
     </div>
 </div>
 
-<div class="text-muted small" style="padding-right: 15px;margin-top: 10px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
+<div class="text-muted small" style="padding-right: 15px;margin-top: 10px; line-height: 30px;background: #f8f8f8; text-align:center;" id="navbarFooter">
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>
 </div>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>

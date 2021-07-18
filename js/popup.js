@@ -9,7 +9,14 @@ $(function() {
 		revert: true
 	});
 
-    $('body').hide().fadeIn(800);
+    $('body').hide().fadeIn(200);
+
+	$("#json_click").click(function(){
+		chrome.tabs.create({'url': chrome.extension.getURL('json_all.html')}, function(tab) {
+			// Tab opened.
+		});
+    });
+	
 
 	// 加载设置
 	// var defaultConfig = {color: 'white'}; // 默认配置

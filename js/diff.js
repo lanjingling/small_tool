@@ -62,6 +62,27 @@ $(document).ready(function(){
 
     //popup.html
     setLocalStorage('page.current', "");
+
+    //back top
+    var $goTopBottom = $('<div id="goTop" style="border-radius:5px;solid #444;background:#333;color:#fff;text-align:center;padding:10px 13px 7px 13px;position:fixed;bottom:50px;right:5px;cursor:pointer;display:none;font-family:verdana;font-size:15px;">∧</div><div id="goBottom" style="border-radius:5px;solid #444;background:#333;color:#fff;text-align:center;padding:10px 13px 7px 13px;position:fixed;bottom:10px;right:5px;cursor:pointer;display:none;font-family:verdana;font-size:15px;">∨</div>').appendTo('body');
+
+    $(window).scroll(function() {
+       if ($(this).scrollTop() != 0) {
+           $goTopBottom.fadeIn();
+       } else {
+           $goTopBottom.fadeOut();
+       }
+    });
+    $("#goTop").click(function() {
+       $('body, html').animate({
+           scrollTop: 0
+       }, 800);
+    });
+    $("#goBottom").click(function() {
+       $('body, html').animate({
+           scrollTop: document.body.clientHeight
+       }, 800);
+    });
 });
 
 const instance = jsondiffpatch.create({
