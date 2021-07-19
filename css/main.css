@@ -51,6 +51,9 @@ hr {
     
 
 .navbar {margin-bottom: 10px; min-height: unset;}
+.navbar a {
+    text-decoration: none;
+}
 .form-group {margin-bottom:10px;}
 .navbar-brand {font-size:16px; padding:10px; height:unset;}
 .navbar-back {font-size: 14px; padding-left: 10px; line-height:40px; padding-left: 22px; color:#777;}
