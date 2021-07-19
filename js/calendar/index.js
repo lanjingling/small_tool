@@ -39,4 +39,10 @@ $(function() {
         //week_walue: "2016/9/17", // 双休对应的周六
         isclick: false
     });
+
+    $("#goback").click(function(){
+        gobackPopup();
+    });
+
+    setLocalStorage('page.current', "calendar");
 });
