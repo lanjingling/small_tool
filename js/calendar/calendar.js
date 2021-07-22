@@ -1,4 +1,5 @@
 (function () {
+    var skinList = ["skin_default","skin_red","skin_blue"];
     var calendar = {
         /**
         * 农历1900-2100的闰大小信息表
@@ -238,6 +239,8 @@
     /* 本月信息 */
     var configDayM = {};
     var isclick = false;
+    var isAlmanac = false;//是否展示 宜忌
+    var almanacDatas = {};
     /*************************主程序******************************/
     $.fn.calendar = function (options) {
         var e = this;
@@ -249,12 +252,15 @@
             week: false,
             week_walue: "2016/9/17",
             isclick: false,
+            isAlmanac: false,
             configDay: {}
         };
         var object = $.extend(true, {}, defaults, options);
         ToDay = object.date;
         isclick = object.isclick;
+        isAlmanac = object.isAlmanac;
         configDay = object.configDay;
+        almanacDatas = object.almanacDatas;
         createTable(object, e);
     };
     /*************************主程序******************************/
@@ -304,7 +310,6 @@
             D += 7;
         }
         _configDayM = _configDayM.substring(0, _configDayM.length - 1) + "}";
-        console.log(_configDayM);
         return JSON.parse(_configDayM);
     }
 
@@ -323,12 +328,14 @@
                     $("#days" + D).find(".xbgj").remove();
                 }
                 if (v == 0) {
+                    $("#days" + D).css("background","#F0F0F1").css("border-radius","12px");
                     $("#days" + D).append("<div class=\"xbgj\" xbgj=\"0\" style=\"position: absolute;\"><div class=\"rest\" style=\"top:" +
-            -parseInt((height - 16) / (count + 1) - 2) + "px;background-color: #53a253\">休</div></div>");
+            -parseInt((height - 16) / (count + 1) - 2) + "px;background-color: #53a253;border-radius:9px 0px 0px 0px\">休</div></div>");
                 }
                 if (v == 1) {
+                    $("#days" + D).css("background","#fad2d2").css("border-radius","12px");
                     $("#days" + D).append("<div class=\"xbgj\" xbgj=\"1\" style=\"position: absolute;\"><div class=\"rest\" style=\"top:" +
-            -parseInt((height - 16) / (count + 1) - 2) + "px;background-color: #e15e5e\">班</div></div>");
+            -parseInt((height - 16) / (count + 1) - 2) + "px;background-color: #e15e5e;border-radius:9px 0px 0px 0px\">班</div></div>");
                 }
             });
         }
@@ -375,6 +382,7 @@
         this.html += "<div class=\"head\">";
         this.html += "<div id=\"YL\" class=\"btn\"><</div>";
         this.html += "<select id=\"SY\">"
+        //for (var i = 1900; i < 2101; i++) this.html += "<option value=\"" + i + "\">" + i + "年</option>";
         for (var i = 1900; i < 2101; i++) this.html += "<option value=\"" + i + "\">" + i + "年</option>";
         this.html += "</select>";
         this.html += "<div id=\"YR\" class=\"btn\">></div>";
@@ -387,8 +395,6 @@
         for (var i = 1; i < 13; i++) this.html += "<option value=\"" + i + "\">" + i + "月</option>";
         this.html += "</select>"
         this.html += "<div id=\"MR\" class=\"btn\">></div>";
-
-        this.html += "<div class=\"fenge\">&nbsp;</div>";
 
         this.html += "<input type=\"button\"  id=\"ReturnBtn\" value=\"返回今天\" class=\"btnreturn\"/>";
         //this.html += "<div class=\"text\" style=\"margin-left:20px;\">" + this.Y + "年" + this.M + "月</div>";
@@ -410,7 +416,7 @@
             else {
                 day = i + 2 - this.W;
                 if (W == 6 || W == 7) color = "red";
-                else color = "#006db7";
+                else color = "#000";
                 this.html += "<div class=\"days\" id=\"days" + day + "\"><div id=\"num" + day +
                     "\" class=\"num\" style=\"color:" + color + ";\">" +
                     (day > 9 ? day : ("0" + day)) + "</div><div class=\"lunar\" id=\"lunar" +
@@ -455,7 +461,7 @@
             if (calendar.lunarFestival[lunar[2] + "-" + lunar[3]] || calendar.gregorianFestival[this.M + "-" + (i + 1)]) {
                 $("#lunar" + (i + 1)).css("color", "red");
             } else if (solarTerms !== "") {
-                $("#lunar" + (i + 1)).css("color", "green");
+                $("#lunar" + (i + 1)).css("color", "#42962e");
             }
             // 计算下个日期的农历
             if (info.leapMonth[0] === lunar[2] && lunar[0] == 1) { flag = info.leapMonth[1]; }
@@ -491,7 +497,7 @@
         var html = "";
         var W = new Date(Y + "/" + M + "/" + ClickDays).getDay();
         W = W == 0 ? 7 : W;
-        html += "<div class=\"ui\">" + Y + "年" + (M > 9 ? M : "0" + M) + "月" + (ClickDays > 9 ? ClickDays : "0" + ClickDays) + "日 星期"
+        html += "<div class=\"ui\">" + Y + "年" + (M > 9 ? M : "0" + M) + "月" + (ClickDays > 9 ? ClickDays : "0" + ClickDays) + "日 \n星期"
             + calendar.Week[W - 1] + "</div>";
         html += "<div class=\"ud\">" + (ClickDays > 9 ? ClickDays : "0" + ClickDays) + "</div>";
         var lunar = calendar.calendarConvert(Y, M, ClickDays);
@@ -506,19 +512,22 @@
         html += "<div class=\"uld\">" + temp + "</div>";
         html += getLunrYMD(lunar, Y, M);
         html += getJR(lunar, Y, M);
+        if(isAlmanac) {
+            html += getAlmanac(Y,M);
+        }
         if (isclick) {
             html += "<input type=\"button\" style=\"width:100%;\" value=\"保  存\" class=\"saveChange\" />";
             html += "<input type=\"button\" style=\"width:100%;\" value=\"重  置\" class=\"resetData\" />";
         }
         $(".rightArea").empty();
         $(".rightArea").append(html);
-        if (lunar[2] == 1 && lunar[3] == 1) {
-            $(".calendar").css("border", "2px solid #f44f23");
-            $(".rightArea").css("background-color", "#f44f23");
-        } else {
-            $(".calendar").css("border", "2px solid #8ec59b");
-            $(".rightArea").css("background-color", "#e0f3e8");
-        }
+        // if (lunar[2] == 1 && lunar[3] == 1) {
+        //     $(".calendar").css("border", "2px solid #f44f23");
+        //     $(".rightArea").css("background-color", "#f44f23");
+        // } else {
+        //     $(".calendar").css("border", "2px solid #8ec59b");
+        //     $(".rightArea").css("background-color", "#e0f3e8");
+        // }
         if (isclick) getPushClick(Y, M);
     };
 
@@ -586,9 +595,39 @@
         var tempM = calendar.monthTD[calendar.Gan[(tempY - 4) % 10]];
         // 1900-01-01 是甲戌日  0,10
         var tempD = (calendar.gregorianCalendar(Y, M, ClickDays) + 30) % 60;
-        html += "<div class=\"ultd\">" + calendar.Gan[ganKey] + calendar.Zhi[zhiKey] + "年 【" + calendar.Animals[zhiKey] + "年】 " +
+        html += "<div class=\"ultd\">" + calendar.Gan[ganKey] + calendar.Zhi[zhiKey] + "年 【" + calendar.Animals[zhiKey] + "】\n" +
             calendar.Gan[(tgCount % 10 + tempM[0]) % 10] + calendar.Zhi[(tgCount % 12 + tempM[1]) % 12] + "月 " +
             calendar.Gan[(tempD % 10) % 10] + calendar.Zhi[(tempD % 12 + 10) % 12] + "日</div>";
+        return html;
+    }
+
+    // 获取宜忌数据
+    function getAlmanac(Y,M) {
+        const adata = almanacDatas[Y+"-"+M+"-"+ClickDays];
+        
+        var html = "<div class=\"almanacDiv\">";
+        html += "<span id=\"almanac_suit\" class=\"almanac_suit\"><font size=\"5\">宜</font>\n\n"
+        if (adata && adata["suit"]) {
+            const suit_array = adata["suit"].split("、");
+            for (var i=0,ind=1;i<suit_array.length && ind <=8;i++,ind++) {//最多显示8行
+                html += suit_array[i];
+                if (i<suit_array.length && ind<=8) {
+                    html+="\n";
+                }
+            }
+        }
+        html += "</span>"
+        html += "<span id=\"almanac_avoid\" class=\"almanac_avoid\"><font size=\"5\">忌</font>\n\n"
+        if (adata && adata["avoid"]) {
+            const avoid_array = adata["avoid"].split("、");
+            for (var i=0,ind=1;i<avoid_array.length && ind <=8;i++,ind++) {//最多显示8行
+                html += avoid_array[i];
+                if (i<avoid_array.length && ind<=8) {
+                    html+="\n";
+                }
+            }
+        }
+        html += "</span></div>";
         return html;
     }
 
@@ -655,8 +694,11 @@
         });
         // 点击日期事件
         $(".days").click(function () {
-            $(".days").css("background", "").css("border", "1px solid #f1ebe4");
-            $(this).css("background", "rgb(255, 248, 230);").css("border", "1px solid rgb(255, 203, 64)");
+            //$(".days").css("background", "").css("border", "1px solid #f1ebe4");
+            //$(".days").css("background", "").css("border", "1px solid transparent");
+            //$(this).css("background", "rgb(255, 248, 230);").css("border", "2px solid #BDBFC8").css("border-radius","9px");
+            $("div").removeClass("selected_day");
+            $(this).addClass("selected_day");
             ClickDays = $(this).attr("id").split("days")[1];
             rightArea(Y, M);
         });
@@ -737,16 +779,28 @@
         var width = options.width;
         var height = options.height;
         var rate = options.rate;
-        $(".calendar").css("width", width + "px").css("height", height + "px");
+        var skin = skinList[options.skin_ind];
+        $(".calendar").css("width", width + "px").css("height", height + "px").addClass(skin);//skin_ind
         $(".leftArea").css("width", parseInt(width * rate - 16) + "px").css("height", height - 16 + "px");
-        $(".rightArea").css("width", parseInt(width * (1 - rate) - 40) + "px").css("height", height - 20 + "px");
+        //$(".rightArea").css("width", parseInt(width * (1 - rate) - 20) + "px").css("height", height - 20 + "px");
+        $(".rightArea").css("width", Math.round(width * (1 - rate) - 20) + "px").css("height", height - 20 + "px").addClass(skin);
         $(".head").css("width", parseInt(width * rate - 16) + "px").css("height", parseInt((height - 16) / 7 * 0.6 - 8 + count / 2) + "px")
             .css("line-height", parseInt((height - 16) / (count + 1) * 0.6 - 8) + "px");
         $(".week").css("width", parseInt((width * rate - 16) / 7) + "px").css("height", parseInt((height - 16) / (count + 1) * 0.4) + "px");
         $(".days").css("width", parseInt((width * rate - 16) / 7 - 2) + "px").css("height", parseInt((height - 16) / (count + 1) - 2.5) + "px");
         $(".days1").css("width", parseInt((width * rate - 16) / 7 - 2) + "px").css("height", parseInt((height - 16) / (count + 1) - 2.5) + "px");
         $(".num").css("line-height", parseInt((height - 16) / (count + 1)) / 2 + "px");
-        $("#days" + ClickDays).css("background", "rgb(255, 248, 230);").css("border", "1px solid rgb(255, 203, 64)");
+        $("#days" + ClickDays).addClass("selected_day");
+        //当前时间样式
+        var Y = options.date.getFullYear();
+        var M = options.date.getMonth() + 1;
+        var D = options.date.getDate();
+        var current_Y = ToDay.getFullYear();
+        var current_M = ToDay.getMonth() + 1;
+        var current_D = ToDay.getDate();
+        if (Y === current_Y && M === current_M && D === current_D) {
+            $("#days" + current_D).css("background", "rgb(255, 248, 230)").css("border", "2px solid rgb(255, 64, 64)").css("border-radius","9px");
+        }
     }
 
 })(this);

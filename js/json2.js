@@ -83,6 +83,10 @@ $(document).ready(function(){
         }
     });
 
+    $("#expan_btn").click(function(){
+        $("#json-display").find('a.json-toggle').click();
+    });
+
 
     $("#clean_btn").click(function(){
         $("#json-display").empty();
@@ -93,6 +97,10 @@ $(document).ready(function(){
     if ($("#json_all").length <= 0) {
         setLocalStorage('page.current', "json");
     }
+
+    $("#title_btn").click(function(){
+        location.reload();
+    });
 
      //init
      var inputSjc = getLocalStorage('json.input.jv');

@@ -1,66 +1,51 @@
 $(document).ready(function(){
-    var str = getCurrentTimeStr();
-    $("#current_value").html(str).css("color","red");
     //init
-    var inputSjc = getLocalStorage('time.input.sjc');
-    let outputSjc = getLocalStorage('time.output.sjc');
-    $("#sjc").val(inputSjc);
-    $("#sjc_value").val(outputSjc);
-    let inputSj = getLocalStorage('time.input.sj');
-    let outputSj = getLocalStorage('time.output.sj');
-    $("#sj").val(inputSj);
-    $("#sj_value").val(outputSj);
+    var inputSjc = getLocalStorage('cron.exp.input');
+    $("#cron_val").val(inputSjc);
 
 
     $("#goback").click(function(){
         gobackPopup();
     });
 
-    $("#sh_refresh").click(function(){
-        var str = getCurrentTimeStr();
-        $("#current_value").html(str).css("color","red");
-    });
+    $("#exp_parse_btn").click(function(){
+        var conVal = $("#cron_val").val();
+        if (conVal) {
+            var arr = conVal.split(" ");
+            var isSec = arr.length > 5;
+            try {
+                var cron = later.parse.cron(conVal);
+                var schedule = later.schedule(cron).next(10);
+                var res = "<pre style='padding:5px;margin:5px;background: #1c2833;color: #fff;'>";
+                for (let i in schedule) {
+                    res += "第"+(Number(i)+1)+"次执行："+timeFormatStr(schedule[i]) + "\n";
+                }
+                res +="</pre>";
 
-    $("#sjc_btn").click(function(){
-        var cron = '15 10 * * ? *';
-        var s = later.parse.cron(cron);
-        var a = later.schedule(s).next(10);
-        alert(a);
-    });
-
-    $("#sj_btn").click(function(){
-        var stmp = $("#sj").val();
-        var date = new Date(stmp);
-        var str = date.getTime()/1000;
-        $("#sj_value").val(str);
-
-        setLocalStorage('time.input.sj', stmp);
-        setLocalStorage('time.output.sj', str);
+                $("#con_res").empty();
+                $("#con_res").append(res);
+    
+                setLocalStorage('cron.exp.input', conVal);
+            } catch(err) {
+                alert("cron 表达式有误！");
+                $("#con_res").empty();
+            }
+        }
     });
 
     $("#clean_btn").click(function(){
-        $("#sjc").val("");
-        $("#sj").val("");
-        $("#sjc_value").val("");
-        $("#sj_value").val("");
+        $("#cron_val").val("");
+        $("#con_res").empty();
 
-        setLocalStorage('time.input.sj', "");
-        setLocalStorage('time.input.sjc', "");
-        setLocalStorage('time.output.sj', "");
-        setLocalStorage('time.output.sjc', "");
+        setLocalStorage('cron.exp.input', "");
+    });
+
+    $("#title_btn").click(function(){
+        location.reload();
     });
 
     setLocalStorage('page.current', "crontab");
 });
-
-
-
-function getCurrentTimeStr(){
-    var t1 = Date.parse(new Date())/1000;
-    var t2 = new Date().getTime();
-
-    return "10位：" + t1 + " ; 13位（毫秒）:" + t2;
-}
 
 function add0(m){return m<10?'0'+m:m }
 function timeFormatStr(shijianchuo){

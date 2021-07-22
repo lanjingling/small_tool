@@ -58,6 +58,10 @@ $(document).ready(function(){
         setLocalStorage('time.output.sjc', "");
     });
 
+    $("#title_btn").click(function(){
+        location.reload();
+    });
+
     setLocalStorage('page.current', "time");
 });
 

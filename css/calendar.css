@@ -81,7 +81,22 @@ body {
 }
 
 .calendar {
-    border: 2px solid #8ec59b;
+    border: 2px solid;
+    /*border-color: #8ec59b;*/
+    border-radius: 12px;
+}
+
+.skin_default {
+    border-color: #8ec59b;
+    background-color:#8ec59b;
+}
+.skin_red {
+    border-color: #f36161;
+    background-color: #f36161;
+}
+.skin_blue {
+    border-color: #3cb7e0;
+    background-color: #3cb7e0;
 }
 
 
@@ -92,6 +107,7 @@ body {
     float: left;
     overflow: hidden;
     background-color: #fff;
+    border-radius: 12px 0px 0px 12px;
 }
 
 
@@ -123,7 +139,7 @@ body {
 
 .calendar .leftArea .head .fenge {
     float: left;
-    width: 30px;
+    width: 20px;
 }
 
 .calendar .leftArea .head .btn:hover {
@@ -140,24 +156,24 @@ body {
 /* 日历左边区域  头部的返回今天按钮 */
 
 .calendar .leftArea .head .btnreturn {
-    float: left;
+    float: right;
     width: 68px;
-    height: 27px;
-    line-height: 27px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
-    background: #F5F5F6;
-    color: #333;
+    /*background: #F5F5F6;
+    color: #333;*/
+    background: #F0F0F1;
     border: 0px;
     border-radius: 6px;
-    
     margin:0px 15px 0px 15px;
 
     cursor: pointer;
 }
 
 .calendar .leftArea .head .btnreturn:hover {
-    color: #315efb;
-    background: #F0F0F1;
+    /*color: #315efb;*/
+    
 }
 
 .calendar .leftArea .head .btnreturn:active {
@@ -198,10 +214,10 @@ body {
     text-align: center;
     display: block;
     float: left;
-    border-top-width: 1px;
+    /**border-top-width: 1px;
     border-top-style: solid;
-    border-top-color: #5caeff;
-    padding-top: 6px;
+    border-top-color: #5caeff;*/
+    padding-top: 9px;
     margin-bottom: 6px;
     overflow: hidden;
 }
@@ -211,10 +227,18 @@ body {
 
 .calendar .leftArea .days {
     float: left;
-    border: 1px solid #f1ebe4;
+    /* border: 1px solid #f1ebe4;
+    border: 1px solid transparent;*/
     display: block;
     overflow: hidden;
     cursor: pointer;
+    box-sizing: border-box;
+    margin:1px;
+}
+
+.calendar .leftArea .days:hover {
+    border: 2px solid #BDBFC8;
+    border-radius: 9px;
 }
 
 
@@ -234,9 +258,12 @@ body {
 
 .calendar .leftArea .days1 {
     float: left;
-    border: 1px solid #f1ebe4;
+    /*border: 1px solid #f1ebe4;
+    border: 1px solid transparent;*/
     display: block;
     overflow: hidden;
+    box-sizing: border-box;
+    margin:1px;
 }
 
 
@@ -266,49 +293,74 @@ body {
     height: 50%;
 }
 
+/*点击选中某天的day*/
+.selected_day {
+    border-radius:9px;
+    /*background: rgb(255, 248, 230);*/
+    border: 2px solid #BDBFC8;
+}
+/*节假日 day*/
+.jjr_sh_day {
+    background-color:#fc9d9d;
+    border-radius: 9px;
+}
+.jjr_xx_day {
+    background-color:#F5F5F6;
+    border-radius: 9px;
+}
+
 
 /* 日历右边区域 */
 
 .calendar .rightArea {
-    padding: 10px 20px 10px 20px;
+    padding: 10px;
     float: left;
     overflow: hidden;
-    background-color: #e0f3e8;
+    /*background-color: #8ec59b;*/
+    border-radius: 0px 9px 9px 0px;
 }
 
 
 /* 日历右边区域 第一条 */
 
 .calendar .rightArea .ui {
-    background-color: #42962e;
+    /*background-color: #42962e;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    padding: 5px 0px 5px 0;
+    */
     width: 100%;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
     font-size: 14px;
     color: #FFF;
-    padding: 10px 0px 10px 0;
-    -moz-border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    border-radius: 4px 4px 0 0;
+    white-space: pre;
 }
 
 
 /* 日历右边区域 第二条 */
 
 .calendar .rightArea .ud {
-    background-color: #fb0;
+    /*background-color: #fb0;
+    -moz-border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+    */
     width: 100%;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
-    font-size: 68px;
+    font-size: 50px;
     font-weight: bold;
     color: #FFF;
-    padding: 10px 0px 10px 0;
-    -moz-border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px;
+    padding: 2px 0px 2px 0;
+
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: #F0F0F1;
+    
 }
 
 
@@ -317,8 +369,8 @@ body {
 .calendar .rightArea .uld {
     text-align: center;
     font-size: 14px;
-    color: #000;
-    padding: 10px 0px 10px 0;
+    color: #fff;
+    padding: 10px 0px 0px 0;
 }
 
 
@@ -327,22 +379,49 @@ body {
 .calendar .rightArea .ultd {
     text-align: center;
     font-size: 14px;
-    color: #000;
+    color: #fff;
     padding: 0px 0px 10px 0;
     border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #abd6b8;
+    border-bottom-style: dashed;
+    border-bottom-color: #F0F0F1;
+    white-space: pre;
 }
 
+/*宜忌*/
+.calendar .rightArea .almanacDiv {
+    position: relative;
+    height: 48%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    white-space: pre;
+}
+.calendar .rightArea .almanacDiv .almanac_suit {
+    display: inline-block;
+    width: 50%;
+    margin-top: 8px;
+    float: left;
+}
+
+.calendar .rightArea .almanacDiv .almanac_avoid {
+    display: inline-block;
+    width: 50%;
+    margin-top: 8px;
+    float: right;
+}
 
 /* 日历右边区域 节日一栏 */
 
 .calendar .rightArea .djr {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #abd6b8;
+    /*border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: #F0F0F1;*/
     padding-top: 8px;
     padding-bottom: 8px;
+    
 }
 
 
@@ -351,7 +430,7 @@ body {
 .calendar .rightArea .djr .title {
     font-size: 14px;
     font-weight: bold;
-    background-color: #0faad1;
+    /*background-color: #0faad1;*/
     display: block;
     float: left;
     height: 24px;
@@ -368,7 +447,7 @@ body {
 .calendar .rightArea .djr .content {
     font-size: 12px;
     line-height: 24px;
-    color: #000;
+    color: #FFF;
 }
 
 

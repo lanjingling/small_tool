@@ -77,6 +77,10 @@ $(document).ready(function(){
         setLocalStorage('url.output.val', "");
     });
 
+    $("#title_btn").click(function(){
+        location.reload();
+    });
+
     setLocalStorage('page.current', "base64");
 });
 

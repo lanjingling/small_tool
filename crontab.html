@@ -8,35 +8,52 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body style="width:600px;"> 
+<body > 
 <nav class="navbar navbar-default" id="navbarHeader">
         <a href="popup.html" class="navbar-back" id="goback"> <span class="goback"></span> 返回工具列表</a>
-        <a class="navbar-brand pull-right" href="#">CRON表达式解析</a>
+        <a class="navbar-brand pull-right" href="#" id="title_btn">CRON表达式解析</a>
 </nav>
 <div class="tool-body" id="toolBody">
     <div class="form-group">
-        <a href="#" id="sh_refresh" title="刷新"><span class="glyphicon glyphicon-refresh"></span></a>
-        当前时间戳：<lable id="current_value"/>  
+        CRON表达式：<input type="text" id="cron_val" class="form-control" placeholder="5或6位cron表达式" style="width:50%;height:30px;display: inline-block;"/> &nbsp; &nbsp;
+        <input type="button" id="exp_parse_btn" value="执行" class="btn btn-sm btn-info"  />&nbsp;
+        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger"/>
     </div>
     <hr>
-    <div class="form-group">
-        时间戳->时间：<input type="text" id="sjc" class="form-control" placeholder="10或13位时间戳" style="width:35%;height:30px;display: inline-block;"/>
-        <input type="button" id="sjc_btn" value="->" class="btn btn-sm btn-info"  />
-        <input type="text" disabled class="form-control" id="sjc_value" style="width:35%;height:30px;display: inline-block;"/>
-        <br/><br/>
-        时间->时间戳：<input type="text" id="sj" class="form-control" placeholder="yyyy-MM-dd HH:mm:ss" style="width:35%;height:30px;display: inline-block;"/>
-        <input type="button" id="sj_btn" value="->" class="btn btn-sm btn-info"  />
-        <input type="text" disabled class="form-control" id="sj_value" style="width:35%;height:30px; display: inline-block;"/>
+    <div class="form-group" id="con_res">
+        
+    </div>
+    <div style="font-size:11px">
+        <pre style="padding:2px;margin:2px;">
+<b>#Linux 5位cron表达式：分钟、小时、日期、月份、星期</b>
+*    *    *    *    *
+-    -    -    -    -
+|    |    |    |    |
+|    |    |    |    +----- day of week(0-7) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+|    |    |    +---------- month (1 - 12) OR jan,feb,mar,apr ...
+|    |    +--------------- day of month (1 - 31)
+|    +-------------------- hour (0 - 23)
++------------------------- minute (0 - 59)
 
-        <br/><br/>
-        <input type="button" id="clean_btn" value="清空结果" class="btn btn-sm btn-danger" style="display:block;margin:0 auto"/>
+<b>#java 6、7位cron表达式：秒、分钟、小时、日期、月份、星期、[年]</b>
+*    *    *    *    *    *    *
+-    -    -    -    -    -    -
+|    |    |    |    |    |    |
+|    |    |    |    |    |    + year [optional]
+|    |    |    |    |    +----- day of week (1 - 7) sun,mon,tue,wed,thu,fri,sat
+|    |    |    |    +---------- month (1 - 12) OR jan,feb,mar,apr ...
+|    |    |    +--------------- day of month (1 - 31)
+|    |    +-------------------- hour (0 - 23)
+|    +------------------------- min (0 - 59)
++------------------------------ second (0 - 59)
+        </pre>
     </div>
 </div>
 <div class="text-muted small" style="padding-right: 15px; line-height: 30px;background: #f8f8f8; text-align:right;" id="navbarFooter">
     <a href="https://github.com/lanjingling/small_tool" target="_blank">©2021 Small Tool V1.0.0</a>
 </div>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="js/later.min.js"></script>
+<script type="text/javascript" src="js/lib/later.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/crontab.js"></script>
 

@@ -61,6 +61,10 @@ $(document).ready(function(){
         setLocalStorage('urlparam.input.val', "");
     });
 
+    $("#title_btn").click(function(){
+        location.reload();
+    });
+
     //init
     let inputval = getLocalStorage('urlparam.input.val');
     $("#url_val").val(inputval);

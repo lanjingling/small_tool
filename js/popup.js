@@ -9,7 +9,7 @@ $(function() {
 		revert: true
 	});
 
-    $('body').hide().fadeIn(200);
+    //$('body').hide().fadeIn(200);
 
 	$("#json_click").click(function(){
 		chrome.tabs.create({'url': chrome.extension.getURL('json_all.html')}, function(tab) {

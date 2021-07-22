@@ -14,5 +14,14 @@
 		"default_icon": "img/icon_16.png",
 		"default_title": "小工具",
 		"default_popup": "popup.html"
-	}
+	},
+	"options_ui":
+	{
+		"page": "option.html",
+		// 添加一些默认的样式，推荐使用
+		"chrome_style": true
+	},
+	"permissions": [
+		"http://calendar.itemev.com/"
+	]
 }

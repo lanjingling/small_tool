@@ -32,6 +32,10 @@ $(document).ready(function(){
         setLocalStorage('binary.input.sel', "");
     });
 
+    $("#title_btn").click(function(){
+        location.reload();
+    });
+
     //init
     var inputval = getLocalStorage('binary.input.val');
     var inputval2 = getLocalStorage('binary.input.sel');
