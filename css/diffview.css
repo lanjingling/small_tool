@@ -58,6 +58,7 @@ table.diff tbody td {
 	padding:0px .4em;
 	padding-top:.4em;
 	vertical-align:top;
+	width:50%
 }
 table.diff .empty {
 	background-color:#DDD;
