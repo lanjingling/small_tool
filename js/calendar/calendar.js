@@ -771,8 +771,28 @@
         var Y = $("#SY").val();
         var M = $("#SM").val();
         $(e).empty();
+        if (M == 4 || M == 6 || M == 9 || M ==11) {
+            if (ClickDays == 31) {
+                ClickDays--;
+            }
+            
+        }
+        if (M == 2) {
+            //闰年29天 平年28
+            if (isLeap(Y)) {
+                ClickDays = ClickDays > 29 ? 29 : ClickDays;
+            } else {
+                ClickDays = ClickDays > 28 ? 28 : ClickDays;
+            }
+        }
         options.date = new Date(Y + "/" + M + "/" + ClickDays);
         createTable(options, e);
+    }
+    function isLeap(year) {
+        if((year%4==0 && year%100!=0)||(year%400==0)){
+            return 1;
+        }
+        return 0;
     }
     // 设置表格样式
     function setLayer(options, count) {
