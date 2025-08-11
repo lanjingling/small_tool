@@ -1,27 +1,25 @@
 {
-    "manifest_version": 2,
-	"name": "Small Tool",
-	"version": "2.0.0",
-	"description": "包含了设计、研发人员常用的小工具：时间戳、json格式化、Base64编解码、URL编解码、进制转换、子网掩码、crontab表达式、文本diff...",
-	"icons":
-	{
-		"16": "img/icon_16.png",
-		"48": "img/icon_48.png",
-		"128": "img/icon_120.png"
-	},
-	"browser_action": 
-	{
-		"default_icon": "img/icon_16.png",
-		"default_title": "小工具",
-		"default_popup": "popup.html"
-	},
-	"options_ui":
-	{
-		"page": "option.html",
-		// 添加一些默认的样式，推荐使用
-		"chrome_style": true
-	},
-	"permissions": [
-		"http://calendar.itemev.com/"
-	]
+  "manifest_version": 3,
+  "name": "Small Tool",
+  "version": "2.0.0",
+  "description": "包含了设计、研发人员常用的小工具：时间戳、json格式化、Base64编解码、URL编解码、进制转换、子网掩码、crontab表达式、文本diff...",
+  "icons": {
+    "16": "img/icon_16.png",
+    "48": "img/icon_48.png",
+    "128": "img/icon_120.png"
+  },
+  "action": {
+    "default_icon": "img/icon_16.png",
+    "default_title": "小工具",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "option.html"
+  },
+  "permissions": [
+    "http://calendar.itemev.com/"
+  ],
+  "host_permissions": [
+    "http://calendar.itemev.com/"
+  ]
 }
